@@ -43,10 +43,18 @@ npm install typescript --save-dev
 }
 ```
 
-## Install vercel CLI Then login the vercel Cmd deploy pross
+## Install vercel CLI Then login the vercel Cmd deploy process
 
 ```
 npm i -g vercel
 vercel login
 vercel --prod
+```
+
+## Install Ts Node Dev & Run this command line
+
+```
+npm i ts-node-dev
+ts-node-dev --respawn --transpile-only server.ts
+
 ```

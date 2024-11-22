@@ -1,13 +1,31 @@
-import { Request, Response } from "express"
+// import { Request, Response } from "express"
 
-const express = require('express')
-const app = express()
-const port = 3000
+import app from "./app";
 
-app.get('/', (req: Request, res: Response) => {
-    res.send('Hello Bangladesh I am Come Back !!')
-})
+// const express = require('express')
+// const app = express()
+// const port = 3000
 
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
-})
+// app.get('/', (req: Request, res: Response) => {
+//     res.send('Hello Bangladesh I am Come Back !!')
+// })
+
+// app.listen(port, () => {
+//     console.log(`Example app listening on port ${port}`)
+// })
+
+async function main() {
+    try {
+
+        app.listen(3000, () => {
+            console.log(`Example app listening on port 3000`);
+
+        })
+
+    } catch (err) {
+        console.log(err);
+
+    }
+}
+
+main()
