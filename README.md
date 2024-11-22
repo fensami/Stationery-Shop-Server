@@ -25,9 +25,7 @@ npm install typescript --save-dev
 
 ### then change tsconfig.js file rootdir and outdir
 
-## Configuar Vercel File
-
-### create a vercel.json file then using the code
+## Configuar Vercel File ### create a vercel.json file then using the code
 
 ```
 {
