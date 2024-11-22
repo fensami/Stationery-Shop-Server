@@ -4,7 +4,7 @@ const express = require('express')
 const app = express()
 const port = 3000
 
-app.get('/api', (req: Request, res: Response) => {
+app.get('/', (req: Request, res: Response) => {
     res.send('Hello Bangladesh I am Come Back !!')
 })
 

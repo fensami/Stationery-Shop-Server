@@ -49,18 +49,12 @@ npm install typescript --save-dev
 
 ## Install vercel CLI
 
-```
-npm i -g vercel
-```
-
 ### Then login the vercel Cmd
-
-```
-vercel login
-```
 
 ## deploy pross
 
 ```
+npm i -g vercel
+vercel login
 vercel --prod
 ```
