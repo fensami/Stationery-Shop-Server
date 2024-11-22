@@ -43,11 +43,7 @@ npm install typescript --save-dev
 }
 ```
 
-## Install vercel CLI
-
-### Then login the vercel Cmd
-
-## deploy pross
+## Install vercel CLI Then login the vercel Cmd deploy pross
 
 ```
 npm i -g vercel
