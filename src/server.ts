@@ -1,24 +1,13 @@
-// import { Request, Response } from "express"
-
+import mongoose from "mongoose";
 import app from "./app";
-
-// const express = require('express')
-// const app = express()
-// const port = 3000
-
-// app.get('/', (req: Request, res: Response) => {
-//     res.send('Hello Bangladesh I am Come Back !!')
-// })
-
-// app.listen(port, () => {
-//     console.log(`Example app listening on port ${port}`)
-// })
+import config from "./app/config";
 
 async function main() {
     try {
+        await mongoose.connect(config.database_url as string)
 
-        app.listen(5000, () => {
-            console.log(`Example app listening on port 3000`);
+        app.listen(config.port, () => {
+            console.log(`app listening on port ${config.port}`);
 
         })
 

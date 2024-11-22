@@ -58,3 +58,15 @@ npm i ts-node-dev
 ts-node-dev --respawn --transpile-only server.ts
 
 ```
+
+## Dotenv install cmd
+
+```
+npm i dotenv
+```
+
+## Install Mongoose cmd
+
+```
+npm install mongoose --save
+```
