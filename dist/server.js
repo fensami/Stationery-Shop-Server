@@ -1,5 +1,4 @@
 "use strict";
-// import { Request, Response } from "express"
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -13,21 +12,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const mongoose_1 = __importDefault(require("mongoose"));
 const app_1 = __importDefault(require("./app"));
-// const express = require('express')
-// const app = express()
-// const port = 3000
-// app.get('/', (req: Request, res: Response) => {
-//     res.send('Hello Bangladesh I am Come Back !!')
-// })
-// app.listen(port, () => {
-//     console.log(`Example app listening on port ${port}`)
-// })
+const config_1 = __importDefault(require("./app/config"));
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            app_1.default.listen(3000, () => {
-                console.log(`Example app listening on port 3000`);
+            yield mongoose_1.default.connect(config_1.default.database_url);
+            app_1.default.listen(config_1.default.port, () => {
+                console.log(`app listening on port ${config_1.default.port}`);
             });
         }
         catch (err) {
@@ -35,3 +28,4 @@ function main() {
         }
     });
 }
+main();
