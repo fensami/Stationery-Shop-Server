@@ -70,3 +70,21 @@ npm i dotenv
 ```
 npm install mongoose --save
 ```
+
+## Path Use Case
+
+### http://localhost:5000/api/products Using post mathod.When hit this path and then create a product data
+
+```
+{
+    "name": "Notebook",
+    "brand": "Moleskine",
+    "price": 15,
+    "category": "Office Supplies",
+    "description": "A high-quality notebook for professionals.",
+    "quantity": 200,
+    "inStock": true
+}
+```
+
+### http://localhost:5000/api/products Using Get Mathod . When hit this path the show all data.

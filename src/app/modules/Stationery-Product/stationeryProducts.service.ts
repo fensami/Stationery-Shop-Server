@@ -10,33 +10,36 @@ const createStationeryProduct = async (payload: TStationeryProduct): Promise<TSt
 }
 
 // Get Stationery Product
-const getStationeryProduct = async () => {
+const getAllStationeryProduct = async () => {
     const result = await StationeryProduct.find()
     return result
 
 }
+
+// Get Single Product Using ID
 const getSingleStationeryProduct = async (id: string) => {
     const result = await StationeryProduct.findById(id)
     return result
 
 }
+// Products Update
+const updateSingleStationeryProduct = async (id: string, data: TStationeryProduct) => {
+    const result = await StationeryProduct.findByIdAndUpdate(id, data, { new: true })
+    return result
+}
 
-// Get signle Student info from DB
-// const getSingleStudentsFromDB = async (id: string) => {
-//     const result = await Student.findOne({ id });
-//     return result;
-//   };
-// const getSingleCategoryProducts = async (_id: string) => {
-//     const result = await StationeryProduct.findById(_id)
-//     console.log(result);
+// Product Delete
+const deleteSingleStationeryProduct = async (id: string) => {
+    const result = await StationeryProduct.findByIdAndDelete(id);
+    return result;
+}
 
-//     return result
-// }
 
 
 export const stationeryProductService = {
     createStationeryProduct,
-    getStationeryProduct,
-    getSingleStationeryProduct
-    // getSingleCategoryProducts
+    getAllStationeryProduct,
+    getSingleStationeryProduct,
+    updateSingleStationeryProduct,
+    deleteSingleStationeryProduct,
 }

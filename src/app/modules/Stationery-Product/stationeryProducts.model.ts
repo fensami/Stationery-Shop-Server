@@ -6,7 +6,7 @@ const stationeryProductSchema = new Schema<TStationeryProduct>({
         type: String,
         required: [true, "Please Provide your Product Name"],
         enum: {
-            values: ['Pen', 'otebook', 'Eraser'],
+            values: ['Pen', 'Notebook', 'Eraser'],
             message: '{VALUE} is not a valid name Set the valid Name',
         },
     },
@@ -18,25 +18,14 @@ const stationeryProductSchema = new Schema<TStationeryProduct>({
             message: '{VALUE} is not a valid brand Set the valid Brand'
         }
     },
-    email: {
-        type: String,
-        required: true,
-        unique: true,
-        validate: {
-            validator: function (value: string) {
-                return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value)
-            },
-            message: "{VALUE} is not valid email"
-        }
-    },
-
     price: {
         type: Number,
         required: true
     },
     category: {
         type: String,
-        required: true
+        required: true,
+        enum: ['Writing', 'Office Supplies', 'Art Supplies', 'Educational', 'Technology']
     },
     description: {
         type: String,
@@ -45,12 +34,17 @@ const stationeryProductSchema = new Schema<TStationeryProduct>({
     quantity: {
         type: Number,
         required: true
+    },
+    inStrock: {
+        type: Boolean,
+        required: true,
+        default: true
     }
 
 
 }, { timestamps: true })
 
 
-const StationeryProduct = model<TStationeryProduct>("Product", stationeryProductSchema);
 
+const StationeryProduct = model<TStationeryProduct>("Product", stationeryProductSchema);
 export default StationeryProduct;
