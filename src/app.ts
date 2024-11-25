@@ -13,7 +13,7 @@ app.use('/api/order', orderProductRouter)
 app.get('/', (req: Request, res: Response) => {
     res.send({
         status: 200,
-        message: 'hello!! Our kings welcome to Stationery shop',
+        message: 'hello!! welcome to Stationery shop',
     })
 })
 

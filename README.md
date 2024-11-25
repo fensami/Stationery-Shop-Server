@@ -13,7 +13,7 @@ https://stationery-shop-umber.vercel.app/
 ## Video Explanation (Public Link)
 
 ```
-
+https://drive.google.com/file/d/1HDP6pBRvmhfvMg5-aTKHPmE5r7D22hxn/view?usp=drive_link
 ```
 
 Professional README file with features of your application and instructions on setting up the project locally.
@@ -97,7 +97,11 @@ npm i dotenv
 npm install mongoose --save
 ```
 
-## API Path Use Case
+# API Path Use Case
+
+## You can using this link instead of http://localhost:5000
+
+### https://stationery-shop-umber.vercel.app/
 
 ### http://localhost:5000/api/products Using post mathod.When hit this path and then create a product data
 

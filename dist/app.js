@@ -15,7 +15,7 @@ app.use('/api/order', orderProducts_route_1.default);
 app.get('/', (req, res) => {
     res.send({
         status: 200,
-        message: 'hello!! Our kings welcome to Stationery shop',
+        message: 'hello!! welcome to Stationery shop',
     });
 });
 exports.default = app;

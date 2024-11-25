@@ -9,6 +9,7 @@ const stationeryProductSchema = new Schema<TStationeryProduct>({
             values: ['Pen', 'Notebook', 'Eraser'],
             message: '{VALUE} is not a valid name Set the valid Name',
         },
+        trim: true
     },
     brand: {
         type: String,
