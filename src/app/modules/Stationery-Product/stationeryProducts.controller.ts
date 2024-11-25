@@ -19,7 +19,7 @@ const createStationeryProduct = async (req: Request, res: Response) => {
         })
     } catch (error) {
         res.json({
-            status: false,
+            success: false,
             message: "SomeThing Went wrong",
             error,
         })
@@ -27,11 +27,13 @@ const createStationeryProduct = async (req: Request, res: Response) => {
     }
 
 }
-// Get Stationery product
-const getAllStationeryProduct = async (req: Request, res: Response) => {
+
+// Get All Products product And Search name,brand ,category wize data searching
+const getAllProduct = async (req: Request, res: Response) => {
     try {
-        const result = await stationeryProductService.getAllStationeryProduct()
-        res.send({
+        const payload = req.query;
+        const result = await StationeryProduct.find(payload)
+        res.json({
             message: "Products retrieved successfully",
             status: true,
             data: result
@@ -39,25 +41,9 @@ const getAllStationeryProduct = async (req: Request, res: Response) => {
     } catch (error) {
         res.json({
             status: false,
-            message: "SomeThing Wents wrong when get all products",
+            message: "SomeThing Went wrong",
             error,
         })
-
-    }
-
-}
-// Search product
-const testProduct = async (req: Request, res: Response) => {
-    try {
-        const query = req.query;
-        const result = await StationeryProduct.find(query)
-        res.json({
-            status: 200,
-            message: "successfull Searching data",
-            data: result
-        })
-    } catch (err) {
-        console.log(err);
 
     }
 }
@@ -68,17 +54,16 @@ const getSingleStationeryProduct = async (req: Request, res: Response) => {
 
         const productId = req.params.productId
         const result = await stationeryProductService.getSingleStationeryProduct(productId)
-        console.log(result);
 
         res.json({
+            status: true,
             message: "Product retrieved successfully",
-            success: true,
             data: result
         })
     } catch (error) {
         res.json({
             status: false,
-            message: "SomeThing Wents wrong when Searching product ID",
+            message: "SomeThing Went Wrong",
             error,
         })
 
@@ -95,15 +80,14 @@ const updateSingleStationeryProduct = async (req: Request, res: Response) => {
         const result = await stationeryProductService.updateSingleStationeryProduct(productId, body);
 
         res.json({
-            status: true,
             message: "Product Updated successfully",
-            success: true,
+            status: true,
             data: result
         })
     } catch (error) {
         res.json({
             status: false,
-            message: "SomeThing Wents wrong",
+            message: "SomeThing Went wrong",
             error,
         })
 
@@ -120,10 +104,9 @@ const deleteSingleStationeryProduct = async (req: Request, res: Response) => {
         await stationeryProductService.deleteSingleStationeryProduct(productId);
 
         res.json({
+            message: "Product deleted successfully",
             status: true,
-            message: "Product Delete successfully",
-            success: true,
-            result: {}
+            data: {}
         })
     } catch (error) {
         res.json({
@@ -140,10 +123,8 @@ const deleteSingleStationeryProduct = async (req: Request, res: Response) => {
 
 export const stationeryProductsController = {
     createStationeryProduct,
-    getAllStationeryProduct,
     getSingleStationeryProduct,
     updateSingleStationeryProduct,
     deleteSingleStationeryProduct,
-    testProduct
-    // getSearchproduct
+    getAllProduct
 }

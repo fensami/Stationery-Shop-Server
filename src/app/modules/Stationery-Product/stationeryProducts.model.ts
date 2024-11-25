@@ -20,20 +20,23 @@ const stationeryProductSchema = new Schema<TStationeryProduct>({
     },
     price: {
         type: Number,
-        required: true
+        required: [true, "Please Provide The Price"]
     },
     category: {
         type: String,
         required: true,
-        enum: ['Writing', 'Office Supplies', 'Art Supplies', 'Educational', 'Technology']
+        enum: {
+            values: ['Writing', 'Office Supplies', 'Art Supplies', 'Educational', 'Technology'],
+            message: '{VALUE} is not a valid category set the valid category'
+        }
     },
     description: {
         type: String,
-        required: true
+        required: [true, "please Provide your description"]
     },
     quantity: {
         type: Number,
-        required: true
+        required: [true, "please Provide Quantity"]
     },
     inStrock: {
         type: Boolean,

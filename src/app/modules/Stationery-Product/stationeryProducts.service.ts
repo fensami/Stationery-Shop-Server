@@ -9,13 +9,6 @@ const createStationeryProduct = async (payload: TStationeryProduct): Promise<TSt
     return result
 }
 
-// Get Stationery Product
-const getAllStationeryProduct = async () => {
-    const result = await StationeryProduct.find()
-    return result
-
-}
-
 // Get Single Product Using ID
 const getSingleStationeryProduct = async (id: string) => {
     const result = await StationeryProduct.findById(id)
@@ -38,7 +31,6 @@ const deleteSingleStationeryProduct = async (id: string) => {
 
 export const stationeryProductService = {
     createStationeryProduct,
-    getAllStationeryProduct,
     getSingleStationeryProduct,
     updateSingleStationeryProduct,
     deleteSingleStationeryProduct,

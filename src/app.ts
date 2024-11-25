@@ -10,12 +10,10 @@ app.use(express.json());
 //Post :  /api/product/create-product
 app.use('/api/', stationeryProductRouter)
 app.use('/api/order', orderProductRouter)
-
 app.get('/', (req: Request, res: Response) => {
     res.send({
         status: 200,
         message: 'hello!! Our kings welcome to Stationery shop',
-        data: "kaku"
     })
 })
 

@@ -1,8 +1,11 @@
-import mongoose, { model } from "mongoose";
-import { TOrderProducts } from "./orderProducts.interface";
+import mongoose from "mongoose";
 const orderProductSchema = new mongoose.Schema({
 
-    _id: mongoose.Schema.Types.ObjectId,
+    email: {
+        type: String,
+        required: true,
+        trim: true
+    },
     product: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Product",
@@ -10,18 +13,15 @@ const orderProductSchema = new mongoose.Schema({
     },
     quantity: {
         type: Number,
-        default: 1
-    },
-    email: {
-        type: String,
-        required: true
+        default: 1,
     },
     totalPrice: {
-        type: String,
-        required: true
+        type: Number,
+        required: true,
+        min: 0
     }
 })
 
-const OrderProduct = model<TOrderProducts>("Order", orderProductSchema);
+const OrderProduct = mongoose.model("Order", orderProductSchema);
 
 export default OrderProduct;

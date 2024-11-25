@@ -1,9 +1,12 @@
-import { ObjectId } from "mongoose";
+import mongoose from "mongoose";
+import { TStationeryProduct } from "../Stationery-Product/stationeryProducts.interface";
 
-export interface TOrderProducts {
+interface TOrderProducts extends Partial<TStationeryProduct> {
 
     email: string,
-    product: ObjectId,
-    quantity: string,
+    product: mongoose.Types.ObjectId,
+    quantity: number,
     totalPrice: number
 }
+
+export default TOrderProducts

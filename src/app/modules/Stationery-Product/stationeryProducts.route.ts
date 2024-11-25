@@ -7,9 +7,8 @@ const stationeryProductRouter = Router()
 stationeryProductRouter.get('/products/:productId', stationeryProductsController.getSingleStationeryProduct)
 stationeryProductRouter.put('/products/:productId', stationeryProductsController.updateSingleStationeryProduct)
 stationeryProductRouter.delete('/products/:productId', stationeryProductsController.deleteSingleStationeryProduct)
-stationeryProductRouter.get('/products', stationeryProductsController.getAllStationeryProduct)
-stationeryProductRouter.get('/products', stationeryProductsController.testProduct)
 stationeryProductRouter.post('/products', stationeryProductsController.createStationeryProduct)
+stationeryProductRouter.get('/products', stationeryProductsController.getAllProduct)
 
 
 export default stationeryProductRouter

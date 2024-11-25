@@ -1,3 +1,23 @@
+## GitHub Repository
+
+```
+https://github.com/fensami/Stationery-Shop
+```
+
+## Live Deployment
+
+```
+https://stationery-shop-umber.vercel.app/
+```
+
+## Video Explanation (Public Link)
+
+```
+
+```
+
+Professional README file with features of your application and instructions on setting up the project locally.
+
 # Project Setup Important Links
 
 ## Node Js installation
@@ -43,6 +63,12 @@ npm install typescript --save-dev
 }
 ```
 
+## intall eslint and prettier
+
+```
+https://dev.to/shafayat/-express-typescript-eslint-prettiersetup-5fhg
+```
+
 ## Install vercel CLI Then login the vercel Cmd deploy process
 
 ```
@@ -71,9 +97,11 @@ npm i dotenv
 npm install mongoose --save
 ```
 
-## Path Use Case
+## API Path Use Case
 
 ### http://localhost:5000/api/products Using post mathod.When hit this path and then create a product data
+
+### You can use this bottom data example
 
 ```
 {
@@ -88,3 +116,9 @@ npm install mongoose --save
 ```
 
 ### http://localhost:5000/api/products Using Get Mathod . When hit this path the show all data.
+
+### http://localhost:5000/api/products?name=Notebook Using Get Mathod . when hit this paht show the all Notebook
+
+### http://localhost:5000/api/products/67432fd7c02e7728a4a031d5 Using Get Mathod. This is an example product id. You can use another id to all data .
+
+### http://localhost:5000/api/products?name=Pen

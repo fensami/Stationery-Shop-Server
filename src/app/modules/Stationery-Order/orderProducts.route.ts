@@ -4,6 +4,6 @@ import { orderProductsController } from "./orderProducts.controller";
 
 const orderProductRouter = Router()
 
-orderProductRouter.post("/", orderProductsController.createOrderProduct)
+orderProductRouter.post("/", orderProductsController.createOrder)
 
 export default orderProductRouter
