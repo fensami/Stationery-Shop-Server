@@ -8,10 +8,29 @@ const createStationeryProduct = async (payload: TStationeryProduct): Promise<TSt
     const result = await StationeryProduct.create(payload)
     return result
 }
+// Get All Products 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const getAllStationeryProduct = async (searchTerm: any) => {
+    let query = {};
 
+    if (searchTerm) {
+        const regex = new RegExp(searchTerm, "i");
+        query = {
+            $or: [
+                { name: regex },
+                { brand: regex },
+                { category: regex },
+            ],
+        }
+    }
+    const result = await StationeryProduct.find(query)
+    return result
+}
 // Get Single Product Using ID
 const getSingleStationeryProduct = async (id: string) => {
     const result = await StationeryProduct.findById(id)
+    console.log(result);
+
     return result
 
 }
@@ -34,4 +53,5 @@ export const stationeryProductService = {
     getSingleStationeryProduct,
     updateSingleStationeryProduct,
     deleteSingleStationeryProduct,
+    getAllStationeryProduct
 }

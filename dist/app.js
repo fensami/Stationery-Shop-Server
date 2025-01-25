@@ -10,7 +10,7 @@ const app = (0, express_1.default)();
 // Middleware
 app.use(express_1.default.json());
 //Post :  /api/product/create-product
-app.use('/api/', stationeryProducts_route_1.default);
+app.use('/api', stationeryProducts_route_1.default);
 app.use('/api/order', orderProducts_route_1.default);
 app.get('/', (req, res) => {
     res.send({

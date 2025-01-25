@@ -2,7 +2,7 @@
 
 import { Request, Response } from "express";
 import { stationeryProductService } from "./stationeryProducts.service";
-import StationeryProduct from "./stationeryProducts.model";
+// import StationeryProduct from "./stationeryProducts.model";
 
 
 // Create Stationery Product
@@ -29,10 +29,30 @@ const createStationeryProduct = async (req: Request, res: Response) => {
 }
 
 // Get All Products product And Search name,brand ,category wize data searching
+// const getAllProduct = async (req: Request, res: Response) => {
+//     try {
+//         const payload = req.query;
+//         const result = await StationeryProduct.find(payload)
+//         res.json({
+//             message: "Products retrieved successfully",
+//             status: true,
+//             data: result
+//         })
+//     } catch (error) {
+//         res.json({
+//             status: false,
+//             message: "SomeThing Went wrong",
+//             error,
+//         })
+
+//     }
+// }
 const getAllProduct = async (req: Request, res: Response) => {
     try {
-        const payload = req.query;
-        const result = await StationeryProduct.find(payload)
+        // const searchTerm = req.query.searchTerm as string
+        // const payload = req.query;
+        const { searchTerm } = req.query
+        const result = await stationeryProductService.getAllStationeryProduct(searchTerm)
         res.json({
             message: "Products retrieved successfully",
             status: true,
