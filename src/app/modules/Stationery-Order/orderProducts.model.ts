@@ -1,27 +1,34 @@
-import mongoose from "mongoose";
-const orderProductSchema = new mongoose.Schema({
+import { model, Schema } from "mongoose";
+import { TOrderProduct } from "./orderProducts.interface";
 
-    email: {
-        type: String,
-        required: true,
-        trim: true
-    },
-    product: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Product",
-        required: true
-    },
-    quantity: {
-        type: Number,
-        default: 1,
-    },
-    totalPrice: {
-        type: Number,
-        required: true,
-        min: 0
+
+const OrderProductSchema = new Schema<TOrderProduct>(
+    {
+        // email: {
+        //     type: String
+        // },
+        user: {
+            type: Schema.Types.ObjectId,
+            ref: "User"
+        },
+        product: {
+            type: Schema.Types.ObjectId,
+            ref: "Product"
+        },
+        quantity: {
+            type: Number,
+            required: true
+        },
+        totalPrice: {
+            type: Number,
+            required: true
+        },
+        orderStatus: {
+            type: String,
+            enum: ['Pending', 'Shipping'],
+            default: "Pending"
+        }
     }
-})
+)
 
-const OrderProduct = mongoose.model("Order", orderProductSchema);
-
-export default OrderProduct;
+export const OrderProduct = model<TOrderProduct>("Order", OrderProductSchema);

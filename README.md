@@ -3,19 +3,19 @@
 ## GitHub Repository
 
 ```
-https://github.com/fensami/Stationery-Shop
+https://github.com/fensami/Stationery-Shop-Server
 ```
 
 ## Live Deployment
 
 ```
-https://stationery-shop-umber.vercel.app/
+
 ```
 
 ## Video Explanation (Public Link)
 
 ```
-https://drive.google.com/file/d/1HDP6pBRvmhfvMg5-aTKHPmE5r7D22hxn/view?usp=drive_link
+
 ```
 
 Professional README file with features of your application and instructions on setting up the project locally.
@@ -99,32 +99,18 @@ npm i dotenv
 npm install mongoose --save
 ```
 
+## Cors Install Link
+
+```
+npm i cors
+npm i --save-dev @types/cors
+```
+
+## Zod Install Link
+
+```
+npm i zod
+npm i --save-dev @types/cors
+```
+
 # API Path Use Case
-
-## You can using this link instead of http://localhost:5000
-
-### https://stationery-shop-umber.vercel.app/
-
-### http://localhost:5000/api/products Using post mathod.When hit this path and then create a product data
-
-### You can use this bottom data example
-
-```
-{
-    "name": "Notebook",
-    "brand": "Moleskine",
-    "price": 15,
-    "category": "Office Supplies",
-    "description": "A high-quality notebook for professionals.",
-    "quantity": 200,
-    "inStock": true
-}
-```
-
-### http://localhost:5000/api/products Using Get Mathod . When hit this path the show all data.
-
-### http://localhost:5000/api/products?name=Notebook Using Get Mathod . when hit this paht show the all Notebook
-
-### http://localhost:5000/api/products/67432fd7c02e7728a4a031d5 Using Get Mathod. This is an example product id. You can use another id to all data .
-
-### http://localhost:5000/api/products?name=Pen

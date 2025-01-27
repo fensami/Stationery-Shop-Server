@@ -1,25 +1,75 @@
-import { Request, Response } from "express";
-import { orderProductsService } from "./orderProducts.service"
+// import AppError from "../../errors/AappErrors";
+import AppError from "../../errors/AappErrors";
+import catchAsync from "../../utils/catchAsync";
+import sendResponse from "../../utils/sendResponse";
+import { orderProductService } from "./orderProducts.service";
 
-const createOrder = async (req: Request, res: Response) => {
+const createOrderProduct = catchAsync(async (req, res) => {
+    const user = req.user?._id;
 
-
-    const { email, product, quantity } = req.body;
-
-    try {
-        const order = await orderProductsService.createOrder(email, product, quantity);
-
-        res.json({
-            message: "order success",
-            order
-        })
-    } catch (err) {
-        console.log(err);
-
+    if (!user) {
+        throw new AppError(404, 'User Not Authenticated');
     }
+    const biCycleOrderData = {
+        ...req.body,
+        user: user,
+    };
+    const result = await orderProductService.createOrderProducts(
+        biCycleOrderData,
+        user)
+    sendResponse(res, {
+        statusCode: 200,
+        success: true,
+        message: 'Order created successfully',
+        data: result,
+    });
+})
 
-}
+const getAllOrders = catchAsync(async (req, res) => {
+    const { searchTerm } = req.query
+    const result = await orderProductService.getAllOrders(searchTerm)
+    sendResponse(res, {
+        statusCode: 200,
+        success: true,
+        message: 'Order Retrieved successfully',
+        data: result,
+    });
+})
 
-export const orderProductsController = {
-    createOrder
+// Delete Single Order Product
+const deleteSingleOrder = catchAsync(async (req, res) => {
+    const id = req.params.id;
+    const result = await orderProductService.deleteSingleOrder(id);
+
+
+    sendResponse(res, {
+        statusCode: 200,
+        success: true,
+        message: 'Order Deleted successfully',
+        data: {},
+    });
+})
+
+const adminShippingOrder = catchAsync(async (req, res) => {
+
+    const { id } = req.params;
+
+    const result = await orderProductService.adminShippingOrder(id)
+
+    sendResponse(res, {
+        success: true,
+        message: "User DeActivate successfully",
+        statusCode: 200,
+        data: result
+    })
+})
+
+
+
+
+export const orderProductController = {
+    createOrderProduct,
+    getAllOrders,
+    deleteSingleOrder,
+    adminShippingOrder
 }

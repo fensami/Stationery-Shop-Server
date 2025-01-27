@@ -72,8 +72,8 @@ const getSingleStationeryProduct = async (req: Request, res: Response) => {
 
     try {
 
-        const productId = req.params.productId
-        const result = await stationeryProductService.getSingleStationeryProduct(productId)
+        const id = req.params.id
+        const result = await stationeryProductService.getSingleStationeryProduct(id)
 
         res.json({
             status: true,
@@ -120,13 +120,13 @@ const deleteSingleStationeryProduct = async (req: Request, res: Response) => {
 
     try {
 
-        const productId = req.params.productId;
-        await stationeryProductService.deleteSingleStationeryProduct(productId);
+        const id = req.params.id;
+        const result = await stationeryProductService.deleteSingleStationeryProduct(id);
 
         res.json({
             message: "Product deleted successfully",
             status: true,
-            data: {}
+            data: { result }
         })
     } catch (error) {
         res.json({

@@ -1,11 +1,13 @@
 import express, { Application, Request, Response } from "express";
 import router from "./app/routes";
 import cors from "cors";
+import globalErrorHandler from "./app/middlewares/globalErrorHandler";
 const app: Application = express();
 
 // Parsers
 app.use(express.json());
-app.use(cors())
+app.use(cors());
+
 //Applications Routes 
 app.use("/api", router);
 
@@ -17,5 +19,6 @@ const test = async (req: Request, res: Response) => {
 }
 
 app.get('/', test)
+app.use(globalErrorHandler)
 
 export default app;

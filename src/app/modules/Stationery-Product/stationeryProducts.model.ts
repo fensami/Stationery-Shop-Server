@@ -39,7 +39,7 @@ const stationeryProductSchema = new Schema<TStationeryProduct>({
         type: Number,
         required: [true, "please Provide Quantity"]
     },
-    inStrock: {
+    inStock: {
         type: Boolean,
         required: true,
         default: true
