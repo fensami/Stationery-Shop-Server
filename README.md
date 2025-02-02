@@ -1,21 +1,17 @@
 # Stationery Shop Server
 
-## GitHub Repository
+## Important Information
 
 ```
-https://github.com/fensami/Stationery-Shop-Server
-```
+Server Live Link : https://stationery-shop-server-xi.vercel.app/
+Client  Live Link :https://stationery-shop-client-seven.vercel.app/
 
-## Live Deployment
+Admin Id & Pass : id: admin1@gmail.com || Pass: admin123
 
-```
+Github Server Link : https://github.com/fensami/Stationery-Shop-Server
+Github Client Link : https://github.com/fensami/Stationery-Shop-Client
 
-```
-
-## Video Explanation (Public Link)
-
-```
-
+video Link :  https://drive.google.com/file/d/1Z9b1P45Ig1MAQY3Ims05xx6x6-HQONqc/view?usp=drive_link
 ```
 
 Professional README file with features of your application and instructions on setting up the project locally.
