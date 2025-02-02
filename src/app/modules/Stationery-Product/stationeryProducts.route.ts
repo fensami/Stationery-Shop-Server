@@ -9,7 +9,7 @@ const stationeryProductRouter = Router()
 // Get Single product
 stationeryProductRouter.get('/get-single-product/:id', stationeryProductsController.getSingleStationeryProduct)
 // Update Product
-stationeryProductRouter.put('/update-product/:productId', validateRequest(productValidationSchema.updateProductsValidationSchema), stationeryProductsController.updateSingleStationeryProduct)
+stationeryProductRouter.patch('/update-product/:id', validateRequest(productValidationSchema.updateProductsValidationSchema), stationeryProductsController.updateSingleStationeryProduct)
 // Delete product
 stationeryProductRouter.delete('/delete-product/:id', auth("admin"), stationeryProductsController.deleteSingleStationeryProduct);
 // Create Products

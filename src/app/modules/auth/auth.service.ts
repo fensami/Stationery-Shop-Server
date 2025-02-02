@@ -5,7 +5,7 @@ import AppError from "../../errors/AappErrors";
 import { IUser } from "../user/user.interface";
 import { User } from "../user/user.model";
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
+import { createToken, verifyToken } from "./auth.utils";
 interface ILoginUser {
     email: string
     password: string
@@ -23,13 +23,13 @@ const login = async (payload: ILoginUser) => {
 
 
     if (!user) {
-        throw new AppError(401, "user is not found !")
+        throw new AppError(401, "user is not found!")
     }
 
-    const isUserBlocked = user?.isBlocked
+    const isUserDeActivate = user?.isDeActivate
 
-    if (isUserBlocked === true) {
-        throw new AppError(401, "user is blocked !")
+    if (isUserDeActivate === true) {
+        throw new AppError(401, "user is DeActivate !")
     }
 
     const isPasswordMatch = await bcrypt.compare(payload?.password, user?.password)
@@ -38,19 +38,85 @@ const login = async (payload: ILoginUser) => {
         throw new AppError(401, "Password is not mached !")
     }
 
-    const accessToken = jwt.sign({ _id: user._id, email: user.email, role: user.role }, config.jwt_access_secret as string, { expiresIn: "30d" })
+    // const accessToken = jwt.sign({ _id: user._id, email: user.email, role: user.role }, config.jwt_access_secret as string, { expiresIn: "30d" })
 
     // eslint-disable-next-line no-unused-vars
     const { password, ...remanningData } = user;
     console.log(user);
-
-
+    //create token and sent to the  client
+    const jwtPayload = {
+        userId: user.id,
+        role: user.role,
+    };
+    const accessToken = createToken(
+        jwtPayload,
+        config.jwt_access_secret as string,
+        config.jwt_access_expires_in as string,
+    );
+    const refreshToken = createToken(
+        jwtPayload,
+        config.jwt_refresh_secret as string,
+        config.jwt_refresh_expires_in as string,
+    );
     return {
         accessToken,
-        remanningData
+        remanningData,
+        refreshToken
     }
 }
 
+
+const refreshToken = async (token: string) => {
+    // checking if the given token is valid
+    const decoded = verifyToken(token, config.jwt_refresh_secret as string);
+
+    // const { userId, iat } = decoded;
+    const { userId } = decoded;
+
+    // checking if the user is exist
+    const user = await User.isUserExistsById(userId);
+    console.log(user);
+
+
+    if (!user) {
+        throw new AppError(404, 'This user is not found !');
+    }
+    // checking if the user is already deleted
+    const isDeActivate = user?.isDeActivate;
+
+    if (isDeActivate) {
+        throw new AppError(404, 'This user is deactivate !');
+    }
+
+    // checking if the user is blocked
+    // const userStatus = user?.status;
+
+    // if (userStatus === 'blocked') {
+    //     throw new AppError(404, 'This user is blocked ! !');
+    // }
+
+    // if (
+    //     user.passwordChangedAt &&
+    //     User.isJWTIssuedBeforePasswordChanged(user.passwordChangedAt, iat as number)
+    // ) {
+    //     throw new AppError(httpStatus.UNAUTHORIZED, 'You are not authorized !');
+    // }
+
+    const jwtPayload = {
+        userId: user?._id,
+        role: user.role,
+    };
+
+    const accessToken = createToken(
+        jwtPayload,
+        config.jwt_access_secret as string,
+        config.jwt_access_expires_in as string,
+    );
+
+    return {
+        accessToken,
+    };
+};
 
 // const forgetPassword = async (userId: string) => {
 
@@ -133,6 +199,7 @@ const login = async (payload: ILoginUser) => {
 export const AuthServices = {
     register,
     login,
+    refreshToken
     // forgetPassword
 }
 

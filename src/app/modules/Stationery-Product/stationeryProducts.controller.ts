@@ -95,9 +95,9 @@ const updateSingleStationeryProduct = async (req: Request, res: Response) => {
 
     try {
 
-        const productId = req.params.productId;
+        const id = req.params.id;
         const body = req.body;
-        const result = await stationeryProductService.updateSingleStationeryProduct(productId, body);
+        const result = await stationeryProductService.updateSingleStationeryProduct(id, body);
 
         res.json({
             message: "Product Updated successfully",

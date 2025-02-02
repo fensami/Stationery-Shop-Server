@@ -11,7 +11,11 @@ authRoute.post("/register", validateRequest(userValidationSchema.createUserValid
 
 authRoute.post("/login", validateRequest(authValidation.loginValidationSchema), AuthControllers.login)
 
-
+authRoute.post(
+    '/refresh-token',
+    validateRequest(authValidation.refreshTokenValidationSchema),
+    AuthControllers.refreshToken,
+);
 // authRoute.post("/forget-password", validateRequest(authValidation.forgetPasswordValidaitonSchema), AuthControllers.forgetPassword)
 
 

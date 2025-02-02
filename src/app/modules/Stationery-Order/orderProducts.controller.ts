@@ -39,7 +39,8 @@ const getAllOrders = catchAsync(async (req, res) => {
 // Delete Single Order Product
 const deleteSingleOrder = catchAsync(async (req, res) => {
     const id = req.params.id;
-    const result = await orderProductService.deleteSingleOrder(id);
+
+    await orderProductService.deleteSingleOrder(id);
 
 
     sendResponse(res, {

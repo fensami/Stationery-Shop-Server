@@ -1,4 +1,5 @@
 
+import config from "../../config";
 import catchAsync from "../../utils/catchAsync";
 import sendResponse from "../../utils/sendResponse";
 import { AuthServices } from "./auth.service";
@@ -18,18 +19,35 @@ const login = catchAsync(async (req, res) => {
 
     const result = await AuthServices.login(req.body);
 
-    const { accessToken } = result;
 
+    const { accessToken, refreshToken, } = result;
+    res.cookie('refreshToken', refreshToken, {
+        secure: config.NODE_ENV === 'development',
+        httpOnly: true,
+        sameSite: 'none', //**
+        maxAge: 1000 * 60 * 60 * 24 * 365, //**
+    });
     sendResponse(res, {
         success: true,
         message: "Login successful",
         statusCode: 200,
         data: {
             accessToken,
+            refreshToken
         }
     })
 })
+const refreshToken = catchAsync(async (req, res) => {
+    const { refreshToken } = req.cookies;
+    const result = await AuthServices.refreshToken(refreshToken);
 
+    sendResponse(res, {
+        statusCode: 200,
+        success: true,
+        message: 'Access token is retrieved succesfully!',
+        data: result,
+    });
+});
 
 // const forgetPassword = catchAsync(async (req, res) => {
 
@@ -49,5 +67,6 @@ const login = catchAsync(async (req, res) => {
 export const AuthControllers = {
     register,
     login,
+    refreshToken
     // forgetPassword
 }
