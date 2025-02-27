@@ -6,8 +6,9 @@ import config from "../config";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { User } from "../modules/user/user.model";
 import AppError from "../errors/AappErrors";
+import { IUserRole } from "../modules/user/user.interface";
 
-const auth = (...requiredRole: string[]) => {
+const auth = (...requiredRole: IUserRole[]) => {
     return catchAsync(async (req: Request, res: Response, next: NextFunction) => {
 
         // const token = req.headers.authorization?.split(' ')[1];
@@ -33,7 +34,7 @@ const auth = (...requiredRole: string[]) => {
         const { email, role } = decoded;
 
         const user = await User.findOne(email);
-        console.log(user);
+        // console.log(user);
 
         if (!user) {
             throw new Error("User not found!")

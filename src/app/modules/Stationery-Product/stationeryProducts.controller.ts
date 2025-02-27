@@ -51,8 +51,8 @@ const getAllProduct = async (req: Request, res: Response) => {
     try {
         // const searchTerm = req.query.searchTerm as string
         // const payload = req.query;
-        const { searchTerm } = req.query
-        const result = await stationeryProductService.getAllStationeryProduct(searchTerm)
+        // const { searchTerm } = req.query
+        const result = await stationeryProductService.getAllStationeryProduct(req.query)
         res.json({
             message: "Products retrieved successfully",
             status: true,

@@ -19,7 +19,7 @@ const register = async (payload: IUser) => {
 const login = async (payload: ILoginUser) => {
 
     const user = await User.findOne({ email: payload?.email }).select("+password")
-    console.log("user", user);
+    // console.log("user", user);
 
 
     if (!user) {
@@ -42,7 +42,7 @@ const login = async (payload: ILoginUser) => {
 
     // eslint-disable-next-line no-unused-vars
     const { password, ...remanningData } = user;
-    console.log(user);
+    // console.log(user);
     //create token and sent to the  client
     const jwtPayload = {
         userId: user.id,
@@ -75,7 +75,7 @@ const refreshToken = async (token: string) => {
 
     // checking if the user is exist
     const user = await User.isUserExistsById(userId);
-    console.log(user);
+    // console.log(user);
 
 
     if (!user) {

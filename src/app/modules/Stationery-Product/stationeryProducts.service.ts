@@ -1,3 +1,4 @@
+import QueryBuilder from "../../builder/QueryBuilder"
 import { TStationeryProduct } from "./stationeryProducts.interface"
 import StationeryProduct from "./stationeryProducts.model"
 
@@ -8,28 +9,23 @@ const createStationeryProduct = async (payload: TStationeryProduct): Promise<TSt
     const result = await StationeryProduct.create(payload)
     return result
 }
-// Get All Products 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const getAllStationeryProduct = async (searchTerm: any) => {
-    let query = {};
+const getAllStationeryProduct = async (query: Record<string, unknown>) => {
 
-    if (searchTerm) {
-        const regex = new RegExp(searchTerm, "i");
-        query = {
-            $or: [
-                { name: regex },
-                { brand: regex },
-                { category: regex },
-            ],
-        }
-    }
-    const result = await StationeryProduct.find(query)
+    const stationeryProductQuery = new QueryBuilder(StationeryProduct.find(), query)
+        .search(["name", "category"])
+        .filter()
+        .sort()
+        .paginate()
+        .fields();
+
+    const result = await stationeryProductQuery.modelQuery;
+
     return result
 }
 // Get Single Product Using ID
 const getSingleStationeryProduct = async (id: string) => {
     const result = await StationeryProduct.findById(id)
-    console.log(result);
+    // console.log(result);
 
     return result
 
